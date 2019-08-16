@@ -22,7 +22,8 @@ function CardList({profile}) {
 function Form(props) {
   
   const [username, setUsername] = React.useState('');
-
+  
+  //a better way to assign the returned json to a variable using async and await.
   handleSubmit = async (event) => {
     event.preventDefault();
     const URL = `https://api.github.com/users/${username}`
@@ -32,7 +33,7 @@ function Form(props) {
  }
   
   handleChange = () => {
-    let username = event.target.value;
+    let username = event.target.value;   //will take the input value
     setUsername(username);
   }
     return(
@@ -49,8 +50,9 @@ function App({title}) {
   const [profile, setProfile] = React.useState([]);
 
   addProfile = (newProfile) => {
-    let userProfile = [...profile];
-    console.log(newProfile)
+    let userProfile = [...profile];     //spreadOperator to copy the array.
+    
+    //This will prevent the entry of duplicate users and also when nothing is passed. 
     if(!userProfile.some(user => user.login === newProfile.login) && !newProfile.message)
     {
       userProfile.push(newProfile);
